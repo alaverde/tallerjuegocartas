@@ -11,7 +11,7 @@ const Home = () => {
     const history = useHistory();
 
     const handleClick = () => {
-      fetch('http://deckofcardsapi.com/api/deck/new')
+      fetch('https://deckofcardsapi.com/api/deck/new')
       .then(response => response.json())
       .then(response => {
         setGameId(response.deck_id);

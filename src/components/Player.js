@@ -4,12 +4,12 @@ import "./Player.css";
 const Player = ({playerNumber, playerName, cards, iconWinner, cardsSelected}) => {
     console.log("Player", iconWinner);
 
-    const colorPlayer = playerNumber === "2" ? 'second-player' : '';
+    const colorPlayer = playerNumber === "2" ? 'second-player' : 'primary-player';
     const hide = iconWinner === "" ? 'hide' : '';
 
     return (
-      <div className={`player ${colorPlayer}`}>
-          <h1 className="name-player line-bottom">{playerName}</h1>
+      <div className={`player`}>
+          <h1 className={`name-player line-bottom  ${colorPlayer}`}>{playerName}</h1>
           <img className={`icon-winner ${hide}`} src={`${process.env.PUBLIC_URL}/${iconWinner}`} alt="icon-winner"></img>
           <div>
             <h2 className="card-selected standard-tile ">Cartas opcionadas</h2>

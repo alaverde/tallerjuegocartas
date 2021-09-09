@@ -33,9 +33,9 @@ const Game = () => {
 
     const handleClickPlay = () => {
       if(!endGame){
-        fetch(`http://deckofcardsapi.com/api/deck/${gameId}/shuffle/`)
+        fetch(`https://deckofcardsapi.com/api/deck/${gameId}/shuffle/`)
         .then( () => {
-            fetch(`http://deckofcardsapi.com/api/deck/${gameId}/draw/?count=2`)
+            fetch(`https://deckofcardsapi.com/api/deck/${gameId}/draw/?count=2`)
             .then(response => response.json())
             .then(response => {
               if(response.cards.length !== 0){

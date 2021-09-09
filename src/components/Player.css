@@ -23,6 +23,11 @@ img {
     margin: 5px;
 }
 
+
+.primary-player{
+    background-color: rgb(60, 116, 168);
+}
+
 .second-player{
     background-color: lightblue;
 }
