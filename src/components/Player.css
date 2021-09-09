@@ -1,0 +1,40 @@
+.player{
+    display: inline-block;
+    width: 50%;
+}
+
+.line-bottom{
+    border-bottom: 1px solid gray;
+}
+
+.name-player{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.standard-tile{
+    font-weight: 100;
+    text-align: center;
+}
+
+img {
+    margin: 5px;
+}
+
+.second-player{
+    background-color: lightblue;
+}
+
+.no-image {
+    display: inline-block;
+    width: 110px;
+    height: 150px;
+    background-color: gainsboro;
+    border: 1px solid black;
+}
+
+.board-card-selected {
+    text-align: center;
+}

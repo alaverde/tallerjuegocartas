@@ -1,0 +1,10 @@
+.label{
+    text-align: left;
+}
+
+.input-name{
+    border-style: none;
+    border-bottom: 2px solid blue;
+    user-select: none;
+    width: 100%;
+}

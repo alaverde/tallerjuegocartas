@@ -1,0 +1,9 @@
+.button-play{
+    text-align: center;
+}
+
+.button-play img{
+    height: 48px;
+    width: 48px;
+    cursor: pointer;
+}
