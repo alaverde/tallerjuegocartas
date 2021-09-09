@@ -8,10 +8,22 @@ import Game from "./pages/Game";
 
 function App() {
 
-  const [player1, setPlayer1] = useState('statePlayer1');
-  const [player2, setPlayer2] = useState('statePlayer2');
-  const [gameId, setGameId] = useState('stateGameId');
-  const value = {player1, setPlayer1, player2, setPlayer2, gameId, setGameId};
+  const [player1, setPlayer1] = useState('');
+  const [player2, setPlayer2] = useState('');
+  const [gameId, setGameId] = useState('');
+  const [cardsPlayer1, setCardsPlayer1] = useState([]);
+  const [cardsPlayer2, setCardsPlayer2] = useState([]);
+  const [iconWinnerPlayer1, setIconWinnerPlayer1] = useState('');
+  const [iconWinnerPlayer2, setIconWinnerPlayer2] = useState('');
+  const value = {
+    player1, setPlayer1, 
+    player2, setPlayer2, 
+    gameId, setGameId,
+    cardsPlayer1, setCardsPlayer1,
+    cardsPlayer2, setCardsPlayer2,
+    iconWinnerPlayer1, setIconWinnerPlayer1,
+    iconWinnerPlayer2, setIconWinnerPlayer2
+  };
 
   return (
     <div className="App">
