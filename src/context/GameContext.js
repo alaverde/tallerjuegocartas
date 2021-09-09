@@ -15,6 +15,12 @@ const GameContext = React.createContext({
   setIconWinnerPlayer1: () => {},
   iconWinnerPlayer2: '',
   setIconWinnerPlayer2: () => {},
+  cardsSelectedPlayer1: [],
+  setCardsSelectedPlayer1: () => {},
+  cardsSelectedPlayer2: [],
+  setCardsSelectedPlayer2: () => {},
+  endGame: false,
+  setEndGame: () => {}
 });
 
 export default GameContext;

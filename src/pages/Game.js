@@ -3,6 +3,7 @@ import "./Game.css";
 import Player from "../components/Player";
 import GameContext from "../context/GameContext";
 import { getSuiteValue } from "../utils/Suite";
+import { useHistory } from "react-router-dom";
 
 const Game = () => {
     const {
@@ -14,8 +15,16 @@ const Game = () => {
       iconWinnerPlayer1,
       setIconWinnerPlayer1,
       iconWinnerPlayer2,
-      setIconWinnerPlayer2
+      setIconWinnerPlayer2,
+      cardsSelectedPlayer1,
+      setCardsSelectedPlayer1,
+      cardsSelectedPlayer2,
+      setCardsSelectedPlayer2,
+      endGame,
+      setEndGame
     } = useContext(GameContext);
+
+    const history = useHistory();
 
     
     const IconWinner = 'winner.png';
@@ -23,17 +32,23 @@ const Game = () => {
     const IconEqualResult = 'empate.png';
 
     const handleClickPlay = () => {
-      fetch(`http://deckofcardsapi.com/api/deck/${gameId}/shuffle/`)
-      .then( () => {
-          fetch(`http://deckofcardsapi.com/api/deck/${gameId}/draw/?count=2`)
-          .then(response => response.json())
-          .then(response => {
-            if(response.cards.length != 0){
-              handleAddCards(response.cards);
-            }
-          });
-        }
-      );
+      if(!endGame){
+        fetch(`http://deckofcardsapi.com/api/deck/${gameId}/shuffle/`)
+        .then( () => {
+            fetch(`http://deckofcardsapi.com/api/deck/${gameId}/draw/?count=2`)
+            .then(response => response.json())
+            .then(response => {
+              if(response.cards.length != 0){
+                handleAddCards(response.cards);
+              }
+            });
+          }
+        );
+      }else{
+        history.push("/");
+        history.go(0);
+      }
+      
     }
 
     const handleAddCards = (cards) => {
@@ -47,8 +62,6 @@ const Game = () => {
     }
 
     const checkWinner = (newCardsPlayer1, newCardsPlayer2) => {
-      let endGame = false;
-
       const searchPlayer1 = newCardsPlayer1.reduce((accumulator, card) => {
         accumulator[card.value] = ++accumulator[card.value] || 0;
         return accumulator;
@@ -69,11 +82,17 @@ const Game = () => {
 
       if(duplicatesPlayer1.length == 2 && duplicatesPlayer2.length == 0){
         winPlayer1();
-        endGame = true;
+        setCardsSelectedPlayer1(duplicatesPlayer1);
+        setEndGame(true);
       }else if(duplicatesPlayer2.length == 2 && duplicatesPlayer1.length == 0){
         winPlayer2();
-        endGame = true;
+        setCardsSelectedPlayer2(duplicatesPlayer2);
+        setEndGame(true);
       }else if(duplicatesPlayer2.length == 2 && duplicatesPlayer1.length == 2){
+
+        setCardsSelectedPlayer1(duplicatesPlayer1);
+        setCardsSelectedPlayer2(duplicatesPlayer2);
+
         const maxValuePlayer1 = getSuiteValue(duplicatesPlayer1[0].suit) + 
           getSuiteValue(duplicatesPlayer1[1].suit);
 
@@ -82,18 +101,16 @@ const Game = () => {
 
         if(maxValuePlayer1 == maxValuePlayer2){
           equalResult();
-          endGame = true;
+          setEndGame(true);
         }else if(maxValuePlayer1 > maxValuePlayer2){
           winPlayer1();
-          endGame = true;
+          setEndGame(true);
         }else if(maxValuePlayer2 > maxValuePlayer1){
           winPlayer2();
-          endGame = true;
+          setEndGame(true);
         }
 
       }
-
-      return endGame;
     }
 
     const winPlayer1 = () => {
@@ -116,10 +133,10 @@ const Game = () => {
         { game => (
             <div className={'board'}>
               <div className="button-play">
-                <img src={process.env.PUBLIC_URL + '/play.png'} alt="Play" onClick={handleClickPlay}></img>
+                <img src={endGame ? process.env.PUBLIC_URL + '/replay.png' : process.env.PUBLIC_URL + '/play.png'} alt="Play" onClick={handleClickPlay}></img>
               </div>
-              <Player playerNumber="1" playerName={`Jugador 1: ${game.player1}`} cards={cardsPlayer1} iconWinner={iconWinnerPlayer1}/>
-              <Player playerNumber="2" playerName={`Jugador 2: ${game.player2}`} cards={cardsPlayer2} iconWinner={iconWinnerPlayer2}/>
+              <Player playerNumber="1" playerName={`Jugador 1: ${game.player1}`} cards={cardsPlayer1} iconWinner={iconWinnerPlayer1} cardsSelected={cardsSelectedPlayer1}/>
+              <Player playerNumber="2" playerName={`Jugador 2: ${game.player2}`} cards={cardsPlayer2} iconWinner={iconWinnerPlayer2} cardsSelected={cardsSelectedPlayer2}/>
             </div>
           )
         }

@@ -1,7 +1,7 @@
 import React from "react";
 import "./Player.css";
 
-const Player = ({playerNumber, playerName, cards, iconWinner}) => {
+const Player = ({playerNumber, playerName, cards, iconWinner, cardsSelected}) => {
     console.log("Player", iconWinner);
 
     const colorPlayer = playerNumber === "2" ? 'second-player' : '';
@@ -14,15 +14,15 @@ const Player = ({playerNumber, playerName, cards, iconWinner}) => {
           <div>
             <h2 className="card-selected standard-tile ">Cartas opcionadas</h2>
             <div className="board-card-selected line-bottom">
-                <img className="" src={process.env.PUBLIC_URL + '/no-card.png'} alt="card1"></img>
-                <img className="" src={process.env.PUBLIC_URL + '/no-card.png'}></img>
+                <img className="card" src={cardsSelected.length == 0 ? process.env.PUBLIC_URL + '/no-card.png' : cardsSelected[0].image} alt="card1"></img>
+                <img className="card" src={cardsSelected.length == 0 ? process.env.PUBLIC_URL + '/no-card.png' : cardsSelected[1].image}></img>
             </div>
           </div>
           <div>
             <h2 className="card-selected standard-tile">Cartas obtenidas</h2>
             <div className="board-cards">
               {cards.map((card, index) => {
-                return <img className="" src={card.image}></img>
+                return <img className="card" src={card.image}></img>
               })}
             </div>
           </div>

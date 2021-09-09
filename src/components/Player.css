@@ -37,7 +37,7 @@ img {
     flex-wrap: wrap;
 }
 
-.board-cards img {
+.card {
     width: 126px;
     height: 162px;
 }

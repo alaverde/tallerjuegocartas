@@ -15,6 +15,9 @@ function App() {
   const [cardsPlayer2, setCardsPlayer2] = useState([]);
   const [iconWinnerPlayer1, setIconWinnerPlayer1] = useState('');
   const [iconWinnerPlayer2, setIconWinnerPlayer2] = useState('');
+  const [cardsSelectedPlayer1, setCardsSelectedPlayer1] = useState([]);
+  const [cardsSelectedPlayer2, setCardsSelectedPlayer2] = useState([]);
+  const [endGame, setEndGame] = useState(false);
   const value = {
     player1, setPlayer1, 
     player2, setPlayer2, 
@@ -22,7 +25,10 @@ function App() {
     cardsPlayer1, setCardsPlayer1,
     cardsPlayer2, setCardsPlayer2,
     iconWinnerPlayer1, setIconWinnerPlayer1,
-    iconWinnerPlayer2, setIconWinnerPlayer2
+    iconWinnerPlayer2, setIconWinnerPlayer2,
+    cardsSelectedPlayer1, setCardsSelectedPlayer1,
+    cardsSelectedPlayer2, setCardsSelectedPlayer2,
+    endGame, setEndGame
   };
 
   return (
