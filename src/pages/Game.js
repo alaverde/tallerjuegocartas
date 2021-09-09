@@ -38,7 +38,7 @@ const Game = () => {
             fetch(`http://deckofcardsapi.com/api/deck/${gameId}/draw/?count=2`)
             .then(response => response.json())
             .then(response => {
-              if(response.cards.length != 0){
+              if(response.cards.length !== 0){
                 handleAddCards(response.cards);
               }
             });
@@ -80,15 +80,15 @@ const Game = () => {
         return searchPlayer2[card.value];
       });
 
-      if(duplicatesPlayer1.length == 2 && duplicatesPlayer2.length == 0){
+      if(duplicatesPlayer1.length === 2 && duplicatesPlayer2.length === 0){
         winPlayer1();
         setCardsSelectedPlayer1(duplicatesPlayer1);
         setEndGame(true);
-      }else if(duplicatesPlayer2.length == 2 && duplicatesPlayer1.length == 0){
+      }else if(duplicatesPlayer2.length === 2 && duplicatesPlayer1.length === 0){
         winPlayer2();
         setCardsSelectedPlayer2(duplicatesPlayer2);
         setEndGame(true);
-      }else if(duplicatesPlayer2.length == 2 && duplicatesPlayer1.length == 2){
+      }else if(duplicatesPlayer2.length === 2 && duplicatesPlayer1.length === 2){
 
         setCardsSelectedPlayer1(duplicatesPlayer1);
         setCardsSelectedPlayer2(duplicatesPlayer2);
@@ -99,7 +99,7 @@ const Game = () => {
         const maxValuePlayer2 = getSuiteValue(duplicatesPlayer2[0].suit) + 
           getSuiteValue(duplicatesPlayer2[1].suit);
 
-        if(maxValuePlayer1 == maxValuePlayer2){
+        if(maxValuePlayer1 === maxValuePlayer2){
           equalResult();
           setEndGame(true);
         }else if(maxValuePlayer1 > maxValuePlayer2){

@@ -10,19 +10,19 @@ const Player = ({playerNumber, playerName, cards, iconWinner, cardsSelected}) =>
     return (
       <div className={`player ${colorPlayer}`}>
           <h1 className="name-player line-bottom">{playerName}</h1>
-          <img className={`icon-winner ${hide}`} src={`${process.env.PUBLIC_URL}/${iconWinner}`}></img>
+          <img className={`icon-winner ${hide}`} src={`${process.env.PUBLIC_URL}/${iconWinner}`} alt="icon-winner"></img>
           <div>
             <h2 className="card-selected standard-tile ">Cartas opcionadas</h2>
             <div className="board-card-selected line-bottom">
-                <img className="card" src={cardsSelected.length == 0 ? process.env.PUBLIC_URL + '/no-card.png' : cardsSelected[0].image} alt="card1"></img>
-                <img className="card" src={cardsSelected.length == 0 ? process.env.PUBLIC_URL + '/no-card.png' : cardsSelected[1].image}></img>
+                <img className="card" src={cardsSelected.length === 0 ? process.env.PUBLIC_URL + '/no-card.png' : cardsSelected[0].image} alt="card1"></img>
+                <img className="card" src={cardsSelected.length === 0 ? process.env.PUBLIC_URL + '/no-card.png' : cardsSelected[1].image} alt="card2"></img>
             </div>
           </div>
           <div>
             <h2 className="card-selected standard-tile">Cartas obtenidas</h2>
             <div className="board-cards">
               {cards.map((card, index) => {
-                return <img className="card" src={card.image}></img>
+                return <img className="card" src={card.image} alt={card.value}></img>
               })}
             </div>
           </div>
